@@ -24,7 +24,7 @@
     "*.{js,json,md,yml,yaml}": "prettier --write"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "license": "MIT"
 }
