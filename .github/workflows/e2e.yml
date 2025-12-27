@@ -15,42 +15,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: Generate stats card
-        uses: ./
-        with:
-          card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true
-          path: build/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate top languages card
-        uses: ./
-        with:
-          card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6
-          path: build/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate pin card
-        uses: ./
-        with:
-          card: pin
-          options: username=readme-tools&repo=github-readme-stats
-          path: build/pin-readme-tools-github-readme-stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate WakaTime card
-        uses: ./
-        with:
-          card: wakatime
-          options: username=MNZ&layout=compact # Used active username from leaderboard
-          path: build/wakatime.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Verify SVG output
-        run: |
-          rg -n "<svg" build/stats.svg
-          rg -n "<svg" build/top-langs.svg
-          rg -n "<svg" build/pin-readme-tools-github-readme-stats.svg
-          rg -n "<svg" build/wakatime.svg
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
         shell: bash
+
+      - name: Run E2E tests
+        run: npm test
+        env:
+          PAT_1: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY_OWNER: "rickstaa"
