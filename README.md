@@ -12,8 +12,6 @@ on:
     - cron: "0 0 * * *" # Runs once daily at midnight
   workflow_dispatch:
 
-permissions: {}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +23,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Generate stats card
-        uses: readme-tools/github-readme-stats-action@v1
+        uses: readme-tools/github-readme-stats-action@V1.1.0
         with:
           card: stats
           options: username=${{ github.repository_owner }}&show_icons=true
@@ -33,7 +31,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate top languages card
-        uses: readme-tools/github-readme-stats-action@v1
+        uses: readme-tools/github-readme-stats-action@V1.1.0
         with:
           card: top-langs
           options: username=${{ github.repository_owner }}&layout=compact&langs_count=6
@@ -41,7 +39,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate pin card
-        uses: readme-tools/github-readme-stats-action@v1
+        uses: readme-tools/github-readme-stats-action@V1.1.0
         with:
           card: pin
           options: username=readme-tools&repo=github-readme-stats
