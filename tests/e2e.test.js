@@ -10,7 +10,7 @@ const rootDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
 );
-const repoOwner = "rickstaa";
+const repoOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "rickstaa";
 let buildDir;
 
 const runCard = (card, options, output) =>
@@ -37,6 +37,7 @@ const runCard = (card, options, output) =>
 
 const assertSvg = async (filePath) => {
   const data = await readFile(filePath, "utf8");
+  console.log(data);
   expect(data).toContain("<svg");
 };
 
